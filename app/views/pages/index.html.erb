@@ -1,0 +1,5 @@
+<h1>Choose A Quiz</h1>
+<% @categories.each do |category| %>
+<a href = "/pages/<%= category["id"] %>"> <%=category["categ_name"] %> 
+<br> 
+<% end %>
