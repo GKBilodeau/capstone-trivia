@@ -1,4 +1,5 @@
-<% @data.each do |question| %>
+form_tag
+<% @questions.each do |question| %>
   <p> <%=question["q_text"]%> </p>
   <p> a. <%=question["q_options_1"]%> </p>
   <p> b. <%=question["q_options_2"]%> </p>
