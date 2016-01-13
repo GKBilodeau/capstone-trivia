@@ -1,14 +1,26 @@
-form_tag
+<%= form_tag '/scores', method: :post do %>
+<div>
+  
+<% k = 0 %>
 <% @questions.each do |question| %>
-  <p> <%=question["q_text"]%> </p>
-  <p> a. <%=question["q_options_1"]%> </p>
-  <p> b. <%=question["q_options_2"]%> </p>
-  <p> c. <%=question["q_options_3"]%> </p>
-  <p> d. <%=question["q_options_4"]%> </p>
+  <%= question["q_text"] %>
   <br>
+  <%=radio_button_tag(:k,"a") %>
+  <%=label_tag(k, "#{question["q_options_1"]}")%>
+  <br> 
+  <%=radio_button_tag(:k,"b") %>
+  <%=label_tag(k, "#{question["q_options_2"]}")%>
+  <br> 
+  <%=radio_button_tag(:k,"c") %>
+  <%=label_tag(k, "#{question["q_options_3"]}")%>
+  <br> 
+  <%=radio_button_tag(:k,"d") %>
+  <%=label_tag(k, "#{question["q_options_4"]}")%> 
   <br>
+  <%=question["q_correct_option"]%>
+  <br>
+<% k+=1 %>
 <% end %>
-
-
-
-
+<%= submit_tag "Finished" %>
+</div>
+<% end %>
