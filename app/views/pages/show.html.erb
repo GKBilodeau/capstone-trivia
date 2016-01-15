@@ -20,9 +20,12 @@
   <%=label_tag(k, "#{question["q_options_4"]}")%> 
   <br>
   <%=hidden_field_tag "#{k}_correct_option", question["q_correct_option"]%>
+  <%=hidden_field_tag :game_id, @category_id%>
   <br>
 <% k += 1 %>
 <% end %>
+<%= check_box_tag(:favorite)%>
 <%= submit_tag "Finished" %>
+
 </div>
 <% end %>
