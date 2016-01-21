@@ -19,9 +19,16 @@ class ScoresController < ApplicationController
         game_score: correct
         )
 
+      
       if params[:favorite]
         Favorite.create(user_id: current_user.id, game_id: params[:game_id])
       end
+
+      Complete.create(
+        user_id: current_user.id,
+        game_id: params[:game_id]
+        )
+      
     end
      redirect_to '/'
   end

@@ -1,31 +1,37 @@
 <%= form_tag '/scores', method: :post do %>
 <div>
-  
 <% k = 1 %>
 <%@correct = 0%>
 
 <% @questions.each do |question| %>
-  <%= question["q_text"] %>
-  <br>
-  <%=radio_button_tag(k,"1") %>
-  <%=label_tag(k, "#{question["q_options_1"]}")%>
-  <br> 
-  <%=radio_button_tag(k,"2") %>
-  <%=label_tag(k, "#{question["q_options_2"]}")%>
-  <br> 
-  <%=radio_button_tag(k,"3") %>
-  <%=label_tag(k, "#{question["q_options_3"]}")%>
-  <br> 
-  <%=radio_button_tag(k,"4") %>
-  <%=label_tag(k, "#{question["q_options_4"]}")%> 
-  <br>
-  <%=hidden_field_tag "#{k}_correct_option", question["q_correct_option"]%>
-  <%=hidden_field_tag :game_id, @category_id%>
+  <p> <%= "#{k}." %><%= CGI.unescapeHTML(question["q_text"]).html_safe %> </p>
+  <p>
+  &nbsp;&nbsp;&nbsp;<%=radio_button_tag(k,"1") %>
+  &nbsp;&nbsp;&nbsp;<%=label_tag(k, "#{question["q_options_1"]}")%>
+  </p>
+  <p> 
+  &nbsp;&nbsp;&nbsp;<%=radio_button_tag(k,"2") %>
+  &nbsp;&nbsp;&nbsp;<%=label_tag(k, "#{question["q_options_2"]}")%>
+  </p>
+  <p> 
+  &nbsp;&nbsp;&nbsp;<%=radio_button_tag(k,"3") %>
+  &nbsp;&nbsp;&nbsp;<%=label_tag(k, "#{question["q_options_3"]}")%>
+  </p>
+  <p> 
+  &nbsp;&nbsp;&nbsp;<%=radio_button_tag(k,"4") %>
+  &nbsp;&nbsp;&nbsp;<%=label_tag(k, "#{question["q_options_4"]}")%> 
+  </p>
+  <p>
+  &nbsp;&nbsp;&nbsp;<%=hidden_field_tag "#{k}_correct_option", question["q_correct_option"]%>
+  &nbsp;&nbsp;&nbsp;<%=hidden_field_tag :game_id, @category_id%>
+  </p>
   <br>
 <% k += 1 %>
 <% end %>
-<%= check_box_tag(:favorite)%>
 <%= submit_tag "Finished" %>
+<br>
+<%= label_tag(:favorite, "Mark As Favorite")%>
+<%= check_box_tag(:favorite)%>
 
 </div>
 <% end %>

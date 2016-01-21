@@ -1,6 +1,52 @@
 <h1>Welcome</h1>
 <h2>Choose A Quiz</h2>
+
+<%= form_tag "/search", method: :post do %>
+  <%= label_tag :search_term,"Search" %>
+  <%= text_field_tag :search_term %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+
 <% @categories.each do |category| %>
 <%= category["id"]%><a href = "/pages/<%= category["id"] %>"> <%=category["categ_name"] %> </a>
 <br>
 <% end %>
+<%x=Score.all.length%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 10px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+}
+</style>
+</head>
+<body>
+
+<table style="width:50%">
+<caption> Recently Played Games </caption>
+  <tr>
+    <th>Email</th>
+    <th>Game</th>   
+    <th>Score</th>
+  </tr>
+  <%10.times do%>
+  <%y=Score.find_by(id:"#{x}")%>
+  <tr>
+    <td><%=y.user.email %></td>
+    <td><%=y.game_id%></td>    
+    <td><%=(y.game_score.to_f)/10 %></td>
+  </tr>
+  <%x -= 1%>
+  <%end%>
+</table>
+
+</body>
+</html>
+

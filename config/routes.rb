@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   get "/" => 'pages#index'
   get "/pages/:id" => 'pages#show'
-  
+  post "/search" => 'pages#search'
+
   get "/scores" => 'scores#index'
   post "/scores" => 'scores#create'
   # The priority is based upon order of creation: first created -> highest priority.
